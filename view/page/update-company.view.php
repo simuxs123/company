@@ -5,20 +5,20 @@
     <h2 class="text-center my-4">Update company</h2>
     <form method="post">
         <div class="form-group">
-            <input class="form-control" value="<?= $_SESSION['data']['company_name']; ?>" type="text" name="name" placeholder="Enter company name">
+            <input class="form-control" readonly value="<?= $_SESSION['data']['company_name']; ?>" type="text" name="name" placeholder="Enter company name">
             <?php if (isset($_SESSION['error'])): ?>
                 <span class="warning"><?= $_SESSION['error']['name'];?></span>
             <?php endif;?>
         </div>
         <div class="form-group">
-            <input class="form-control" value="<?= $_SESSION['data']['code']; ?>" type="text" name="code" placeholder="Enter company code">
+            <input class="form-control" readonly value="<?= $_SESSION['data']['code']; ?>" type="text" name="code" placeholder="Enter company code">
             <?php if (isset($_SESSION['error'])): ?>
                 <span class="warning"><?= $_SESSION['error']['code'];?></span>
             <?php endif;?>
         </div>
         <div class="form-group">
             <small>*LT-</small>
-            <input class="form-control" value="<?= $_SESSION['data']['vat_code']; ?>" type="text" name="vatCode" placeholder="Enter company vat code">
+            <input class="form-control" readonly value="<?= $_SESSION['data']['vat_code']; ?>" type="text" name="vatCode" placeholder="Enter company vat code">
             <?php if (isset($_SESSION['error'])): ?>
                 <span class="warning"><?= $_SESSION['error']['vatCode'];?></span>
             <?php endif;?>

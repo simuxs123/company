@@ -5,9 +5,9 @@
  use CompanyApp\Validation;
 session_start();
  if(isset($_POST['send'])){
-     $connection=DB::connect();
      $error=Validation::validate($_POST);
      if(empty(implode("",$error))){
+         $connection=DB::connect();
          $company=new Company($connection);
          $doesCompanyExist= $company->findError($_POST['name'],$_POST['code'],$_POST['vatCode']);
          if(empty($doesCompanyExist)){
