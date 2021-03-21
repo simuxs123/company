@@ -6,7 +6,7 @@
     <div>
         <p> Company name: <span class="font-weight-bold"><?= ucfirst(strtolower($_SESSION['data'][0]['company_name'])) ?></span></p>
         <p>Company code: <span class="font-weight-bold"><?= $_SESSION['data'][0]['code'] ?></span></p>
-        <p>Company vat code: <span class="font-weight-bold"><?= $_SESSION['data'][0]['vat_code'] ?></span></p>
+        <p>Company vat code: <span class="font-weight-bold">LT-<?= $_SESSION['data'][0]['vat_code'] ?></span></p>
         <p>Company address: <span class="font-weight-bold"><?= $_SESSION['data'][0]['address'] ?></span></p>
         <p>Company phone: <span class="font-weight-bold"><?= $_SESSION['data'][0]['phone'] ?></span></p>
         <p>Company email: <span class="font-weight-bold"><?= $_SESSION['data'][0]['email'] ?></span></p>

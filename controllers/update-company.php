@@ -5,7 +5,6 @@ use CompanyApp\Validation;
 use CompanyApp\Request;
 session_start();
 $id=intval(basename(Request::uri()));
-echo $id;
 $connection=DB::connect();
 $company=new Company($connection);
 $_SESSION['data'] = $company->oneCompany($id)[0];
