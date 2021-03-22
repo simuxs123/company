@@ -12,6 +12,7 @@ if (isset($_POST['login'])) {
         $connection = DB::connect();
         $user = new User($connection);
         $user->loginUser($_POST);
+        unset($_SESSION['error']);
         require('view/page/login.view.php');
     } else {
         $_SESSION['error'] = $error;
