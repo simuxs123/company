@@ -26,11 +26,11 @@ class Validation {
         }
     }
     public static function validateName($name){
-        $validName=preg_match('/^[\w\d ,.]{1,100}$/',$name);
+        $validName=preg_match('/^.{1,100}$/',$name);
         if(empty($name)){
             Validation::$errors['name']="Input required";
         } else if(!$validName){
-            Validation::$errors['name']="Max name length 150";
+            Validation::$errors['name']="Max name length 100 or using bad symbols";
         } else {
             Validation::$errors['name']="";
         }
