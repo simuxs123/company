@@ -3,9 +3,11 @@
  use CompanyApp\DB;
  use CompanyApp\Company;
  use CompanyApp\Validation;
-session_start();
+if(!isset($_SESSION['login'])){
+    header("Location:/company/login");
+}
  if(isset($_POST['send'])){
-     $error=Validation::validate($_POST);
+     $error=Validation::validateCompany($_POST);
      if(empty(implode("",$error))){
          $connection=DB::connect();
          $company=new Company($connection);

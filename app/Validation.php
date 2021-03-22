@@ -2,7 +2,7 @@
 namespace CompanyApp;
 class Validation {
     private static $errors=[];
-    public static function validate($data){
+    public static function validateCompany($data){
         self::validateName($data['name']);
         self::validateCode($data['code']);
         self::validateVatCode($data['vatCode']);
@@ -12,6 +12,18 @@ class Validation {
         self::validateActivity($data['activities']);
         self::validateManager($data['manager']);
         return self::$errors;
+    }
+    public static function validateUser($data){
+        self::validateEmail($data['email']);
+        self::validatePassword($data['password']);
+        return self::$errors;
+    }
+    public static function validatePassword($pass){
+        if(empty($pass)){
+            Validation::$errors['password']="Input required";
+        } else {
+            Validation::$errors['address']="";
+        }
     }
     public static function validateName($name){
         $validName=preg_match('/^[\w\d ,.]{1,100}$/',$name);

@@ -18,7 +18,7 @@
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
                 Delete
             </button>
-            <a class="btn btn-warning" href="/company/companies/<?=$_SESSION['p']?>">Go to list</a>
+            <a class="btn btn-warning" href="/company/companies/<?=$_SESSION['pg']?>">Go to list</a>
         </div>
 
         <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
