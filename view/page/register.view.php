@@ -1,4 +1,5 @@
 <?php require("view/_partials/head.view.php");?>
+<?php require ('view/_partials/nav.view.php');?>
 <div class="container">
     <h2 class="text-center my-4">Register</h2>
     <form method="post">

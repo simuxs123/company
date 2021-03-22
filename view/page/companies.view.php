@@ -1,4 +1,5 @@
 <?php require("view/_partials/head.view.php");?>
+<?php require ('view/_partials/nav.view.php');?>
 <div class="container-lg mt-5 ">
     <h1 class="text-center">Companies list</h1>
     <div class="text-center my-4">

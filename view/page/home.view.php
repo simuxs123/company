@@ -1,5 +1,5 @@
 <?php require("view/_partials/head.view.php");?>
-
+<?php require ('view/_partials/nav.view.php');?>
     <div class="container">
         <h1 class="text-center mt-5">Companies managment app</h1>
         <form class="form-inline" method="POST">
