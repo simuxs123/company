@@ -10,9 +10,9 @@
     </div>
 </div>
 <?php foreach ($_SESSION['data'] as $company):?>
-    <div class="row align-items-center border border-top-0">
+    <div class="row align-items-center border border-top-0" id="list">
         <div class="col-4 px-0 border-right">
-            <div class="py-2 px-3 font-weight-bold"><a href="/company/info/<?=$company['id']?>"><?= htmlspecialchars(strtoupper($company['company_name']))?></a></div>
+            <div class="py-2 px-3 font-weight-bold "><a href="/company/info/<?=$company['id']?>"><?= htmlspecialchars(strtoupper($company['company_name']))?></a></div>
         </div>
         <div class="col-4 px-0 border-right">
             <div class="py-2 px-3"><?=htmlspecialchars(ucfirst(strtolower( $company['address'])))?></div>
