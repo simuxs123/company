@@ -12,10 +12,10 @@
         </li>
     <?php else:?>
         <li class="nav-item">
-            <a class="nav-link text-white" href="/company/login">Login</a>
+            <a class="nav-link text-white" href="/company/login">SIGN IN</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" href="/company/register">Register</a>
+            <a class="nav-link text-white" href="/company/register">SIGN UP</a>
         </li>
     <?php endif; ?>
 

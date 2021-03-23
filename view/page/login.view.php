@@ -1,7 +1,7 @@
-<?php require("view/_partials/head.view.php");?>
-<?php require ('view/_partials/nav.view.php');?>
-<div class="container">
-    <h2 class="text-center my-4">Login</h2>
+
+<div class="container user-form">
+    <h2 class="text-center my-4 ">Companies management application</h2>
+    <h5 class="text-center my-4 ">Sign in using your email and password</h5>
     <form method="post">
         <div class="form-group row">
             <label for="staticName" class="col-sm-4 col-form-label">Email</label>
@@ -21,7 +21,7 @@
                 <p class="warning col-12 text-right"><?= $_SESSION['error']['password'];?></p>
             <?php endif;?>
         </div>
-        <button class="btn btn-primary" type="submit" name="login">Login</button>
+        <button class="btn btn-primary" type="submit" name="login">SIGN IN</button>
     </form>
 </div>
 <?php require("view/_partials/footer.view.php");?>

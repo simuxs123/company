@@ -1,13 +1,14 @@
 
 <?php require("view/_partials/head.view.php"); ?>
 <?php require ('view/_partials/nav.view.php');?>
+
 <div class="container">
     <h2 class="text-center my-4">Update company</h2>
     <form method="post">
         <div class="form-group row">
             <label for="staticName" class="col-sm-4 col-form-label">Company name</label>
             <div class="col-sm-8">
-                <input class="form-control" id="staticName" readonly value="<?= $_SESSION['data']['company_name']; ?>" type="text" name="name" placeholder="Enter company name">
+                <input class="form-control input" title="This input unchangeable" id="staticName" readonly value='<?= $_SESSION['data']['company_name']; ?>' type="text" name="name" placeholder="Enter company name">
             </div>
             <?php if (isset($_SESSION['error'])): ?>
                 <p class="warning col-12 text-right"><?= $_SESSION['error']['name'];?></p>
@@ -16,7 +17,7 @@
         <div class="form-group row">
             <label for="staticCode" class="col-sm-4 col-form-label">Company code</label>
             <div class="col-sm-8">
-                <input class="form-control" id="staticCode" readonly value="<?= $_SESSION['data']['code']; ?>" type="text" name="code" placeholder="Enter company code">
+                <input class="form-control" title="This input unchangeable" id="staticCode" readonly value="<?= $_SESSION['data']['code']; ?>" type="text" name="code" placeholder="Enter company code">
             </div>
             <?php if (isset($_SESSION['error'])): ?>
                 <p class="warning col-12 text-right"><?= $_SESSION['error']['code'];?></p>
@@ -25,7 +26,7 @@
         <div class="form-group row">
             <label for="staticVat" class="col-sm-4 col-form-label">Company VAT code</label>
             <div class="col-sm-8">
-                <input class="form-control" id="staticVat" readonly value="<?= $_SESSION['data']['vat_code']; ?>" type="text" name="vatCode" placeholder="Enter company vat code">
+                <input class="form-control" title="This input unchangeable" id="staticVat" readonly value="<?= $_SESSION['data']['vat_code']; ?>" type="text" name="vatCode" placeholder="Enter company vat code">
             </div>
             <?php if (isset($_SESSION['error'])): ?>
                 <p class="warning col-12 text-right"><?= $_SESSION['error']['vatCode'];?></p>

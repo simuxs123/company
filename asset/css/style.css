@@ -1,6 +1,19 @@
 html body {
-    background: linear-gradient(to right, #d4ccbe, #baadad, #e7dbe7);
-    font-size: 1.1rem;
+    background: linear-gradient(
+            to right,
+            rgba(24,18,18, 0.3),
+            rgba(24,18,18, 0.3)
+    ),url("../img/bg.jpg") no-repeat center center;
+    background-size: cover;
+    color: white;
+    height: 100vh;
+}
+a:hover {
+    text-decoration: none;
+    color: white;
+}
+.user-form {
+    padding-top: 30vh;
 }
 form {
     max-width: 560px;

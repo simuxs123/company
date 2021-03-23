@@ -1,7 +1,10 @@
+<?php require("view/_partials/head.view.php");?>
+<?php require ('view/_partials/nav.view.php');?>
 <?php
 use CompanyApp\DB;
 use CompanyApp\User;
 use CompanyApp\Validation;
+
 if(isset($_SESSION['login'])){
     header("Location:/company");
 }

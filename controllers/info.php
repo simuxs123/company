@@ -8,7 +8,7 @@ if(!isset($_SESSION['login'])){
 $id=intval(basename(Request::uri()));
 $connection=DB::connect();
 $company=new Company($connection);
-$_SESSION['data'] = $company->oneCompany($id);
+$_SESSION['data'] = $company->oneCompany($id)[0];
 if(empty($_SESSION['data'])){
     header('Location:/company/companies');
 }

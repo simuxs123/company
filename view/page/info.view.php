@@ -3,18 +3,18 @@
 <div class="container">
     <h1 class="text-center mt-3">Company information</h1>
     <div class="company-info-box p-4 d-flex flex-column justify-content-between"">
-    <div>
-        <p> Company name: <span class="font-weight-bold"><?= htmlspecialchars(ucfirst(strtolower($_SESSION['data'][0]['company_name']))) ?></span></p>
-        <p>Company code: <span class="font-weight-bold"><?= htmlspecialchars($_SESSION['data'][0]['code']) ?></span></p>
-        <p>Company vat code: <span class="font-weight-bold">LT-<?= htmlspecialchars($_SESSION['data'][0]['vat_code']) ?></span></p>
-        <p>Company address: <span class="font-weight-bold"><?= htmlspecialchars($_SESSION['data'][0]['address']) ?></span></p>
-        <p>Company phone: <span class="font-weight-bold"><?= htmlspecialchars($_SESSION['data'][0]['phone']) ?></span></p>
-        <p>Company email: <span class="font-weight-bold"><?= htmlspecialchars($_SESSION['data'][0]['email']) ?></span></p>
-        <p>Company activity: <span class="font-weight-bold"><?= htmlspecialchars(ucfirst(strtolower($_SESSION['data'][0]['activities']))) ?></span></p>
-        <p>Company manager: <span class="font-weight-bold"><?= htmlspecialchars(ucwords($_SESSION['data'][0]['manager'])) ?></span></p>
+    <div class="text-dark">
+        <p> Company name: <span class="font-weight-bold"><?= htmlspecialchars(strtoupper($_SESSION['data']['company_name'])) ?></span></p>
+        <p>Company code: <span class="font-weight-bold"><?= htmlspecialchars($_SESSION['data']['code']) ?></span></p>
+        <p>Company vat code: <span class="font-weight-bold">LT-<?= htmlspecialchars($_SESSION['data']['vat_code']) ?></span></p>
+        <p>Company address: <span class="font-weight-bold"><?= htmlspecialchars($_SESSION['data']['address']) ?></span></p>
+        <p>Company phone: <span class="font-weight-bold"><?= htmlspecialchars($_SESSION['data']['phone']) ?></span></p>
+        <p>Company email: <span class="font-weight-bold"><?= htmlspecialchars($_SESSION['data']['email']) ?></span></p>
+        <p>Company activity: <span class="font-weight-bold"><?= htmlspecialchars(ucfirst(strtolower($_SESSION['data']['activities']))) ?></span></p>
+        <p>Company manager: <span class="font-weight-bold"><?= htmlspecialchars(ucwords($_SESSION['data']['manager'])) ?></span></p>
     </div>
         <div>
-            <a class="btn btn-success" href="/company/update-company/<?= $_SESSION['data'][0]['id'] ?>">Update</a>
+            <a class="btn btn-success" href="/company/update-company/<?= $_SESSION['data']['id'] ?>">Update</a>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
                 Delete
             </button>
