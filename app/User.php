@@ -37,7 +37,7 @@ class User{
             $loginUser=$statement->fetchAll(PDO::FETCH_ASSOC);
             if(isset($loginUser[0])){
                 if (password_verify($this->password, $loginUser[0]['password'])) {
-                    $_SESSION['login']=$loginUser[0]['id'];
+                    $_SESSION['login']=$loginUser[0]['usr_id'];
                     header('Location: /company');
                 } else {
                     echo "<p class='warning text-center mt-5'>Incorrect password</p>";

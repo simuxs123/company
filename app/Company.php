@@ -11,6 +11,7 @@ class Company{
     private $email="";
     private $activities="";
     private $manager="";
+    private $userId=0;
     private $error="";
 
     public function __construct($pdo){
@@ -25,6 +26,7 @@ class Company{
         $this->email=$company['email'];
         $this->activities=$company['activities'];
         $this->manager=$company['manager'];
+        $this->userId=$company['userId'];
     }
     public function createCompany($company){
         $this->companyData($company);
@@ -51,8 +53,8 @@ class Company{
     }
     public function insertCompany(){
         try{
-            $query="INSERT INTO `info` (`company_name`,`code`,`vat_code`,`address`,`phone`,`email`,`activities`,`manager`) 
-                VALUE (:name,:code,:vatCode,:address,:phone,:email,:activities,:manager)";
+            $query="INSERT INTO `info` (`company_name`,`code`,`vat_code`,`address`,`phone`,`email`,`activities`,`manager`,`user_id`) 
+                VALUE (:name,:code,:vatCode,:address,:phone,:email,:activities,:manager,:userId)";
             $stmt=$this->pdo->prepare($query);
             $stmt->bindParam(':name',$this->name,PDO::PARAM_STR);
             $stmt->bindParam(':code',$this->code,PDO::PARAM_STR);
@@ -62,8 +64,9 @@ class Company{
             $stmt->bindParam(':email',$this->email,PDO::PARAM_STR);
             $stmt->bindParam(':activities',$this->activities,PDO::PARAM_STR);
             $stmt->bindParam(':manager',$this->manager,PDO::PARAM_STR);
+            $stmt->bindParam(':userId',$this->userId,PDO::PARAM_INT);
             $stmt->execute();
-            header('Location:/company/companies');
+            header('Location:/company/user-companies');
         } catch(PDOException $e){
             echo $e->getMessage();
         }
@@ -80,7 +83,7 @@ class Company{
                         email=:email,
                         activities=:activities,
                         manager=:manager
-                    WHERE id=:id";
+                    WHERE `company_id`=:id";
             $stmt=$this->pdo->prepare($query);
             $stmt->bindParam(':name',$this->name,PDO::PARAM_STR);
             $stmt->bindParam(':code',$this->code,PDO::PARAM_STR);
@@ -92,32 +95,43 @@ class Company{
             $stmt->bindParam(':manager',$this->manager,PDO::PARAM_STR);
             $stmt->bindValue(":id",$id,PDO::PARAM_INT);
             $stmt->execute();
-            header('Location:/company/info/'.$id);
+            header('Location:/company/my-info/'.$id);
         } catch (PDOException $e){
             echo $e->getMessage();
         }
     }
-    public function deleteCompany($id){
+    public function deleteCompany($id,$userId){
         try{
-            $stmt=$this->pdo->prepare("DELETE FROM info WHERE `id`=:id");
+            $stmt=$this->pdo->prepare("DELETE FROM info WHERE `company_id`=:id AND `user_id`=:userId");
             $stmt->bindValue(":id",$id,PDO::PARAM_INT);
+            $stmt->bindValue(":userId",$userId,PDO::PARAM_INT);
             $stmt->execute();
-            header('Location:/company/companies');
+            header('Location:/company/user-companies');
         } catch (PDOException $e){
             echo $e->getMessage();
         }
     }
     public function oneCompany($id){
-        $statement=$this->pdo->prepare('SELECT * FROM `info` WHERE `id`=:id');
-        $statement->bindValue(":id",$id,PDO::PARAM_INT);
-        $statement->execute();
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+        try{
+            $statement=$this->pdo->prepare('SELECT * FROM `info` WHERE `company_id`=:id');
+            $statement->bindValue(":id",$id,PDO::PARAM_INT);
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        }catch (PDOException $e){
+            echo $e->getMessage();
+        }
+
     }
     public function searchCompany($search){
-        $statement=$this->pdo->prepare("SELECT * FROM `info` WHERE `company_name` LIKE CONCAT('%',:search, '%') OR `code`=:search");
-        $statement->bindValue(":search",$search,PDO::PARAM_STR);
-        $statement->execute();
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+        try {
+            $statement=$this->pdo->prepare("SELECT * FROM `info` WHERE `company_name` LIKE CONCAT('%',:search, '%') OR `code`=:search");
+            $statement->bindValue(":search",$search,PDO::PARAM_STR);
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        }catch (PDOException $e){
+            echo $e->getMessage();
+        }
+
     }
 
 }

@@ -78,7 +78,7 @@
             <?php endif;?>
         </div>
         <button class="btn btn-primary" type="submit" name="send">Update</button>
-        <a class="btn btn-warning" href="/company/info/<?= $_SESSION['data']['id'];?>">Cancel</a>
+        <a class="btn btn-warning" href="/company/my-info/<?= $_SESSION['data']['company_id'];?>">Cancel</a>
     </form>
 </div>
 <?php require("view/_partials/footer.view.php");?>

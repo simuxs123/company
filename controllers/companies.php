@@ -3,9 +3,7 @@
 use CompanyApp\DB;
 use CompanyApp\Pagination;
 use CompanyApp\Request;
-if(!isset($_SESSION['login'])){
-    header("Location:/company/login");
-}
+
 
 $connection=DB::connect();
 $companies=new Pagination($connection);

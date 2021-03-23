@@ -4,7 +4,7 @@
  use CompanyApp\Company;
  use CompanyApp\Validation;
 if(!isset($_SESSION['login'])){
-    header("Location:/company/login");
+    header("Location:/company");
 }
  if(isset($_POST['send'])){
      $error=Validation::validateCompany($_POST);
@@ -13,6 +13,7 @@ if(!isset($_SESSION['login'])){
          $company=new Company($connection);
          $doesCompanyExist= $company->findError($_POST['name'],$_POST['code'],$_POST['vatCode']);
          if(empty($doesCompanyExist)){
+             $_POST['userId']=$_SESSION['login'];
              $company->createCompany($_POST);
          } else {
              echo "<p class='warning text-center mt-5'>$doesCompanyExist<p>";

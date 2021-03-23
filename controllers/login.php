@@ -24,5 +24,8 @@ if (isset($_POST['login'])) {
     if (isset($_SESSION['error'])) {
         unset($_SESSION['error']);
     }
+    if (isset($_SESSION['data'])) {
+        unset($_SESSION['data']);
+    }
     require('view/page/login.view.php');
 }
