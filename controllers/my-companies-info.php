@@ -10,6 +10,6 @@ $connection=DB::connect();
 $company=new Company($connection);
 $_SESSION['data'] = $company->oneCompany($id)[0];
 if(empty($_SESSION['data'])){
-    header('Location:/company/user/company-info');
+    header('Location:/company/user-companies');
 }
 require('view/page/my-companies-info.view.php');

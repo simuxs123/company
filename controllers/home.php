@@ -2,7 +2,6 @@
 
 use CompanyApp\DB;
 use CompanyApp\Company;
-
 if(isset($_POST['submit'])){
     $connection=DB::connect();
     $company=new Company($connection);

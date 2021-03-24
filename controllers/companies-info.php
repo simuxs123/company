@@ -2,7 +2,6 @@
 use CompanyApp\DB;
 use CompanyApp\Company;
 use CompanyApp\Request;
-
 $id=intval(basename(Request::uri()));
 $connection=DB::connect();
 $company=new Company($connection);

@@ -1,5 +1,9 @@
-
+<?php require("view/_partials/head.view.php");?>
+<?php require ('view/_partials/nav.view.php');?>
 <div class="container user-form">
+    <?php if (isset($_SESSION['userError'])): ?>
+        <p class='warning text-center mt-5 '><?=$_SESSION['userError'] ?></p>
+    <?php endif;?>
     <h2 class="text-center my-4 ">Companies management application</h2>
     <h5 class="text-center my-4 ">Interested? Sign up now!</h5>
     <form method="post">

@@ -17,38 +17,7 @@ class User{
     }
     public function createUser($user){
         $this->userData($user);
-        if(isset($this->emailExist($user['email'])[0])){
-            echo "<p class='warning text-center mt-5'>This email already exist</p>";
-        } else {
-            $this->insertUser();
-        }
-
-    }
-    public function LoginUser($user){
-        $this->userData($user);
-        $this->checkLoginUser();
-    }
-
-    public function checkLoginUser(){
-        try{
-            $statement=$this->pdo->prepare('SELECT * FROM `user` WHERE `email`=:email');
-            $statement->bindValue(":email",$this->email,PDO::PARAM_STR);
-            $statement->execute();
-            $loginUser=$statement->fetchAll(PDO::FETCH_ASSOC);
-            if(isset($loginUser[0])){
-                if (password_verify($this->password, $loginUser[0]['password'])) {
-                    $_SESSION['login']=$loginUser[0]['usr_id'];
-                    header('Location: /company');
-                } else {
-                    echo "<p class='warning text-center mt-5'>Incorrect password</p>";
-                }
-            } else {
-                echo "<p class='warning text-center mt-5'>Email doesnt exist</p>";
-            }
-        }catch(PDOException $e){
-            echo $e->getMessage();
-        }
-
+        $this->insertUser();
     }
 
     public function insertUser(){

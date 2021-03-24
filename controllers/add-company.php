@@ -6,6 +6,7 @@
 if(!isset($_SESSION['login'])){
     header("Location:/company");
 }
+
  if(isset($_POST['send'])){
      $error=Validation::validateCompany($_POST);
      if(empty(implode("",$error))){
