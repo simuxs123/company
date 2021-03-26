@@ -79,6 +79,7 @@
                         <p class="warning col-12 text-right"><?= $_SESSION['error']['manager'];?></p>
                     <?php endif;?>
                 </div>
+                <input type="hidden" name="userId" value="<?= $_SESSION['login']; ?>">
                 <button class="btn btn-primary" type="submit" name="send">Add company</button>
                 <a class="btn btn-warning" href="companies">Cancel</a>
             </form>

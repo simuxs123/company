@@ -14,10 +14,9 @@ unset($_SESSION['userError']);
          $connection=DB::connect();
          $company=new Company($connection);
          $doesCompanyExist= $company->findError($_POST['name'],$_POST['code'],$_POST['vatCode']);
-         if(isset($doesCompanyExist)){
+         if($doesCompanyExist>0){
              $_SESSION['userError']='Company already exist. Check company name, code or VAT code';
          } else {
-             $_POST['userId']=$_SESSION['login'];
              $company->setCompany($_POST);
          }
      } else {

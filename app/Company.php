@@ -33,7 +33,7 @@ class Company{
         $this->saveData($id);
     }
 
-    public function findError($name,$code,$vatCode): array
+    public function findError($name,$code,$vatCode):int
     {
         $query1="SELECT * FROM `info` WHERE company_name=:name OR code=:code OR vat_code=:vatCode";
         $stmt=$this->pdo->prepare($query1);
@@ -41,7 +41,7 @@ class Company{
         $stmt->bindValue(":code",$code,PDO::PARAM_STR);
         $stmt->bindValue(":vatCode",$vatCode,PDO::PARAM_STR);
         $stmt->execute();
-        return $stmt->fetch();
+        return $stmt->rowCount();
 
     }
     public function saveData($id){
