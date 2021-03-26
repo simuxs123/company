@@ -2,17 +2,16 @@
 namespace CompanyApp;
 use PDO;
 class Company{
-    protected $pdo;
-    private $name="";
-    private $code="";
-    private $vatCode="";
-    private $address="";
-    private $phone="";
-    private $email="";
-    private $activities="";
-    private $manager="";
-    private $userId=0;
-    private $error="";
+    protected PDO $pdo;
+    private string $name="";
+    private string $code="";
+    private string $vatCode="";
+    private string $address="";
+    private string $phone="";
+    private string $email="";
+    private string $activities="";
+    private string $manager="";
+    private int $userId=0;
 
     public function __construct($pdo){
         $this->pdo=$pdo;
@@ -28,34 +27,35 @@ class Company{
         $this->manager=$company['manager'];
         $this->userId=$company['userId'];
     }
-    public function createCompany($company){
+
+    public function setCompany($company, $id=null){
         $this->companyData($company);
-        $this->insertCompany();
-    }
-    public function updateCompany($company, $id){
-        $this->companyData($company);
-        $this->setCompany($id);
+        $this->saveData($id);
     }
 
-    public function findError($name,$code,$vatCode){
+    public function findError($name,$code,$vatCode): array
+    {
         $query1="SELECT * FROM `info` WHERE company_name=:name OR code=:code OR vat_code=:vatCode";
         $stmt=$this->pdo->prepare($query1);
         $stmt->bindValue(":name",$name,PDO::PARAM_STR);
         $stmt->bindValue(":code",$code,PDO::PARAM_STR);
         $stmt->bindValue(":vatCode",$vatCode,PDO::PARAM_STR);
         $stmt->execute();
-        if($stmt->fetch()){
-            $this->error="Company already exist. Check company name, code or VAT code";
-        } else{
-            $this->error='';
-        }
-        return $this->error;
+        return $stmt->fetch();
+
     }
-    public function insertCompany(){
+    public function saveData($id){
         try{
-            $query="INSERT INTO `info` (`company_name`,`code`,`vat_code`,`address`,`phone`,`email`,`activities`,`manager`,`user_id`) 
+            if(isset($id)){
+                $query="UPDATE info SET company_name= :name, code=:code, vat_code=:vatCode, address=:address, phone=:phone,
+                        email=:email, activities=:activities, manager=:manager, user_id=:userId WHERE `company_id`=:id";
+                $stmt=$this->pdo->prepare($query);
+                $stmt->bindValue(":id",$id,PDO::PARAM_INT);
+            }else {
+                $query="INSERT INTO `info` (`company_name`,`code`,`vat_code`,`address`,`phone`,`email`,`activities`,`manager`,`user_id`) 
                 VALUE (:name,:code,:vatCode,:address,:phone,:email,:activities,:manager,:userId)";
-            $stmt=$this->pdo->prepare($query);
+                $stmt=$this->pdo->prepare($query);
+            }
             $stmt->bindParam(':name',$this->name,PDO::PARAM_STR);
             $stmt->bindParam(':code',$this->code,PDO::PARAM_STR);
             $stmt->bindParam(':vatCode',$this->vatCode,PDO::PARAM_STR);
@@ -66,40 +66,14 @@ class Company{
             $stmt->bindParam(':manager',$this->manager,PDO::PARAM_STR);
             $stmt->bindParam(':userId',$this->userId,PDO::PARAM_INT);
             $stmt->execute();
-            header('Location:/company/user-companies');
+            isset($id)?header('Location:/company/my-info/'.$id):
+                        header('Location:/company/user-companies');
         } catch(PDOException $e){
             echo $e->getMessage();
         }
     }
 
-    public function setCompany($id){
-        try{
-            $query="UPDATE info SET 
-                        company_name= :name,
-                        code=:code,
-                        vat_code=:vatCode,
-                        address=:address,
-                        phone=:phone,
-                        email=:email,
-                        activities=:activities,
-                        manager=:manager
-                    WHERE `company_id`=:id";
-            $stmt=$this->pdo->prepare($query);
-            $stmt->bindParam(':name',$this->name,PDO::PARAM_STR);
-            $stmt->bindParam(':code',$this->code,PDO::PARAM_STR);
-            $stmt->bindParam(':vatCode',$this->vatCode,PDO::PARAM_STR);
-            $stmt->bindParam(':address',$this->address,PDO::PARAM_STR);
-            $stmt->bindParam(':phone',$this->phone,PDO::PARAM_STR);
-            $stmt->bindParam(':email',$this->email,PDO::PARAM_STR);
-            $stmt->bindParam(':activities',$this->activities,PDO::PARAM_STR);
-            $stmt->bindParam(':manager',$this->manager,PDO::PARAM_STR);
-            $stmt->bindValue(":id",$id,PDO::PARAM_INT);
-            $stmt->execute();
-            header('Location:/company/my-info/'.$id);
-        } catch (PDOException $e){
-            echo $e->getMessage();
-        }
-    }
+
     public function deleteCompany($id,$userId){
         try{
             $stmt=$this->pdo->prepare("DELETE FROM info WHERE `company_id`=:id AND `user_id`=:userId");
@@ -111,7 +85,8 @@ class Company{
             echo $e->getMessage();
         }
     }
-    public function oneCompany($id){
+    public function oneCompany($id): array
+    {
         try{
             $statement=$this->pdo->prepare('SELECT * FROM `info` WHERE `company_id`=:id');
             $statement->bindValue(":id",$id,PDO::PARAM_INT);
@@ -122,7 +97,8 @@ class Company{
         }
 
     }
-    public function searchCompany($search){
+    public function searchCompany($search): array
+    {
         try {
             $statement=$this->pdo->prepare("SELECT * FROM `info` WHERE `company_name` LIKE CONCAT('%',:search, '%') OR `code`=:search");
             $statement->bindValue(":search",$search,PDO::PARAM_STR);

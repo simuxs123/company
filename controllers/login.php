@@ -31,7 +31,6 @@ if (isset($_POST['login'])) {
     } else {
         $_SESSION['error'] = $error;
     }
-    require('view/page/login.view.php');
-} else {
-    require('view/page/login.view.php');
 }
+require('view/page/login.view.php');
+

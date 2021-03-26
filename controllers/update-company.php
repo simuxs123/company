@@ -6,6 +6,7 @@ use CompanyApp\Request;
 if(!isset($_SESSION['login'])){
     header("Location:/company");
 }
+unset($_SESSION['error']);
 $id=intval(basename(Request::uri()));
 $connection=DB::connect();
 $company=new Company($connection);
@@ -17,13 +18,11 @@ if($_SESSION['login']!=$_SESSION['data']['user_id']){
 if(isset($_POST['send'])){
     $error=Validation::validateCompany($_POST);
     if(empty(implode("",$error))){
-            $company->updateCompany($_POST,$id);
+            $company->setCompany($_POST,$id);
     } else {
         $_SESSION['error'] = $error;
-        require ('view/page/update-company.view.php');
     }
-} else {
-    unset($_SESSION['error']);
-    require ('view/page/update-company.view.php');
 }
+require ('view/page/update-company.view.php');
+
 

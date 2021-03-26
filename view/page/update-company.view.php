@@ -78,6 +78,7 @@
                     <p class="warning col-12 text-right"><?= $_SESSION['error']['manager'];?></p>
                 <?php endif;?>
             </div>
+            <input type="hidden" name="userId" value="<?= $_SESSION['data']['user_id']; ?>">
             <button class="btn btn-primary" type="submit" name="send">Update</button>
             <a class="btn btn-warning" href="/company/my-info/<?= $_SESSION['data']['company_id'];?>">Cancel</a>
         </form>

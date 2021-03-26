@@ -1,8 +1,9 @@
 <?php
 namespace CompanyApp;
 class Validation {
-    private static $errors=[];
-    public static function validateCompany($data){
+    private static array $errors=[];
+    public static function validateCompany($data): array
+    {
         self::validateName($data['name']);
         self::validateCode($data['code']);
         self::validateVatCode($data['vatCode']);
@@ -13,7 +14,8 @@ class Validation {
         self::validateManager($data['manager']);
         return self::$errors;
     }
-    public static function validateUser($data){
+    public static function validateUser($data): array
+    {
         self::validateEmail($data['email']);
         self::validatePassword($data['password']);
         return self::$errors;

@@ -2,10 +2,9 @@
 namespace CompanyApp;
 use PDO;
 class User{
-    protected $pdo;
-    private $email="";
-    private $password="";
-    private $error="";
+    protected PDO $pdo;
+    private string $email="";
+    private string $password="";
 
     public function __construct($pdo){
         $this->pdo=$pdo;
@@ -34,7 +33,8 @@ class User{
             echo $e->getMessage();
         }
     }
-    public function emailExist($email){
+    public function emailExist($email): array
+    {
         try{
             $stmt=$this->pdo->prepare("SELECT * FROM `user` WHERE email=:email");
             $stmt->bindValue(":email",$email,PDO::PARAM_STR);

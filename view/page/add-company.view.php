@@ -1,6 +1,9 @@
 <?php require("view/_partials/head.view.php"); ?>
 <?php require ('view/_partials/nav.view.php');?>
     <div class="container">
+        <?php if (isset($_SESSION['userError'])): ?>
+            <p class='warning text-center mt-5'><?=$_SESSION['userError'] ?></p>
+        <?php endif;?>
         <div class="content">
             <h2 class="text-center my-4">Add company</h2>
             <form method="post">

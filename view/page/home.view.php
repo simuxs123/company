@@ -2,7 +2,7 @@
 <?php require ('view/_partials/nav.view.php');?>
     <div class="container">
         <div class="content">
-            <h1 class="text-center mt-5">Companies managment app</h1>
+            <h1 class="text-center mt-5">Companies management app</h1>
             <h5 class="text-center my-4">Please enter company name or code and find all information about it!</h5>
             <form class="form-inline" method="POST">
                 <div class="form-group mx-sm-3 mb-2 w-75">

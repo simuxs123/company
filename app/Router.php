@@ -1,8 +1,9 @@
 <?php
 namespace CompanyApp;
 class Router {
-    private $routes=[];
-    public static function load($file){
+    private array $routes=[];
+    public static function load($file): Router
+    {
         $router = new static;
         require $file;
         return $router;

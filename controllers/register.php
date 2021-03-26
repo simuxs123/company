@@ -23,7 +23,6 @@ if(isset($_POST['register'])){
     } else {
         $_SESSION['error'] = $error;
     }
-    require ('view/page/register.view.php');
-} else {
-    require ('view/page/register.view.php');
 }
+require ('view/page/register.view.php');
+
